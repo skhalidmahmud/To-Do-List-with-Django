@@ -1,0 +1,53 @@
+{% extends "master.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+<style>
+.welcome-container {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    padding: 40px 30px;
+    max-width: 500px;
+    margin: 50px auto 0 auto;
+    transition: box-shadow 0.3s;
+}
+.welcome-container:hover {
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+.welcome-container h1 {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-size: 2.5rem;
+    color: #4f46e5;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+.welcome-container p {
+    font-size: 1.15rem;
+    color: #374151;
+    margin-bottom: 28px;
+}
+.welcome-container .btn-primary {
+    background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
+    transition: background 0.2s, transform 0.2s;
+}
+.welcome-container .btn-primary:hover {
+    background: linear-gradient(90deg, #818cf8 0%, #6366f1 100%);
+    transform: translateY(-2px) scale(1.04);
+}
+</style>
+<div class="welcome-container" style="text-align:center; margin-top:50px;">
+    <h1>Welcome to Your To-Do List!</h1>
+    <p>Organize your tasks, boost your productivity, and never miss a deadline.</p>
+    <a href="{% url 'addTask' %}" class="btn btn-primary" style="margin-top:20px;">Add a new task</a>
+</div>
+
+{% endblock body %}

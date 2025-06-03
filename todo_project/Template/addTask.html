@@ -1,0 +1,122 @@
+{% extends "master.html" %}
+
+{% block title %}Add Task{% endblock title %}
+
+{% block body %}
+
+<h2>Add New Task</h2>
+
+<style>
+body {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #4f46e5;
+    margin-top: 30px;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+form {
+    background: #fff;
+    max-width: 450px;
+    margin: 40px auto 0 auto;
+    padding: 32px 28px 24px 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(79, 70, 229, 0.12), 0 1.5px 6px rgba(0,0,0,0.04);
+}
+
+form div {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    color: #6366f1;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #c7d2fe;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f1f5f9;
+    transition: border-color 0.2s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #6366f1;
+    background: #fff;
+}
+
+textarea {
+    min-height: 70px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.10);
+    transition: background 0.2s, transform 0.1s;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
+    transform: translateY(-2px) scale(1.02);
+}
+</style>
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="id_title">Title:</label>
+        <input type="text" id="id_title" name="title" required>
+    </div>
+    <div>
+        <label for="id_descriptions">Descriptions:</label>
+        <textarea id="id_descriptions" name="descriptions" required></textarea>
+    </div>
+    <div>
+        <label for="id_status">Status:</label>
+        <select id="id_status" name="status" required>
+            <option value="pending">Pending</option>
+            <option value="in_progress">In Progress</option>
+            <option value="completed">Completed</option>
+        </select>
+    </div>
+    <div>
+        <label for="id_deu_date">Due Date:</label>
+        <input type="date" id="id_deu_date" name="deu_date" required>
+    </div>
+    <div>
+        <label for="id_create_date">Create Date:</label>
+        <input type="date" id="id_create_date" name="create_date" required>
+    </div>
+    <button type="submit">Add Task</button>
+</form>
+
+{% endblock body %}

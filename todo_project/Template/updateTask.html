@@ -1,0 +1,123 @@
+{% extends "master.html" %}
+
+{% block title %}Update Task{% endblock title %}
+
+{% block body %}
+
+<h2>Add New Task</h2>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #4f46e5;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+form {
+    background: #fff;
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 32px 28px 24px 28px;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(79, 70, 229, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+}
+
+form div {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: #6366f1;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #c7d2fe;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f1f5f9;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: none;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #6366f1;
+    background: #fff;
+}
+
+textarea {
+    min-height: 70px;
+    max-height: 200px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(90deg, #6366f1 60%, #818cf8 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+    transition: background 0.2s, transform 0.1s;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #818cf8 60%, #6366f1 100%);
+    transform: translateY(-2px) scale(1.02);
+}
+</style>
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="id_title">Title:</label>
+        <input type="text" id="id_title" value="{{task.title}}" name="title" required>
+    </div>
+    <div>
+        <label for="id_descriptions">Descriptions:</label>
+        <textarea id="id_descriptions" name="descriptions" required>{{task.description}}</textarea>
+    </div>
+    <div>
+        <label for="id_status">Status:</label>
+        <select id="id_status" name="status" required>
+            <option value="pending" {% if task.status == "pending" %}selected{% endif %}>Pending</option>
+            <option value="in_progress" {% if task.status == "in_progress" %}selected{% endif %}>In Progress</option>
+            <option value="completed" {% if task.status == "completed" %}selected{% endif %}>Completed</option>
+        </select>
+    </div>
+    <div>
+        <label for="id_deu_date">Due Date:</label>
+        <input type="date" id="id_deu_date" value="{{ task.due_date|date:'Y-m-d' }}" name="deu_date" required>
+    </div>
+    <div>
+        <label for="id_create_date">Create Date:</label>
+        <input type="date" id="id_create_date" value="{{ task.created_at|date:'Y-m-d' }}" name="create_date" required>
+    </div>
+    <button type="submit" value="update">Edit this Task</button>
+</form>
+
+{% endblock body %}

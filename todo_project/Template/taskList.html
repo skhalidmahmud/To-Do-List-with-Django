@@ -1,0 +1,92 @@
+{% extends "master.html" %}
+
+{% block title %}Task List{% endblock title %}
+
+{% block body %}
+
+<style>
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #4f46e5;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+#customers {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto 40px auto;
+  box-shadow: 0 4px 24px rgba(79, 70, 229, 0.08);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#customers th, #customers td {
+  padding: 16px 12px;
+  text-align: left;
+}
+
+#customers th {
+  background-color: #6366f1;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+#customers tr:hover {
+  background-color: #e0e7ff;
+  transition: background 0.2s;
+}
+
+#customers td a {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 4px;
+  transition: color 0.2s;
+}
+
+#customers td a:hover {
+  color: #1e293b;
+  text-decoration: underline;
+}
+</style>
+<h1>All task you added</h1>
+
+<table id="customers">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Due Datwe</th>
+    <th>Create Date</th>
+    <th>Action</th>
+  </tr>
+  {% for data in tasks %}
+  <tr>
+    <td>{{ data.title }}</td>
+    <td>{{ data.description }}</td>
+    <td>{{ data.status }}</td>
+    <td>{{ data.due_date }}</td>
+    <td>{{ data.created_at }}</td>
+    <td>
+        <a href="{% url 'updateTask' data.id %}">Update</a> |
+        <a href="{% url 'deleteTask' data.id %}">Delete</a>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock body %}
