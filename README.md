@@ -4,7 +4,7 @@ A simple yet functional To-Do List web application built using Django. This proj
 
 ## 🌐 Live Preview
 
-*(Add your deployed URL here if available)*
+*(do not deployed yeat)*
 
 ---
 
@@ -67,18 +67,21 @@ Now visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser to view
 To-Do-List-with-Django/
 ├── manage.py
 ├── db.sqlite3
-├── todo/
+├── Template/
+│   ├── ...
+│   ├── ...
+├── tasks/
 │   ├── admin.py
 │   ├── apps.py
 │   ├── models.py
 │   ├── tests.py
 │   ├── views.py
-│   ├── urls.py
-│   ├── templates/
 │   └── migrations/
-├── ToDoList/
+├── todo_project/
+│   ├── asgi.py
 │   ├── settings.py
 │   ├── urls.py
+│   ├── views.py
 │   └── wsgi.py
 ```
 
