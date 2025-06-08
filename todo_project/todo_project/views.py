@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from tasks.models import To_do_Model
+from django.utils import timezone
+now = timezone.now()
 def home(request):
     return render(request, 'home.html')
 
@@ -9,14 +11,12 @@ def add_task(request):
         Descriptions = request.POST.get('descriptions')
         Status = request.POST.get('status')
         Due_Date = request.POST.get('due_date')
-        Create_date = request.POST.get('create_date')
 
         new_task = To_do_Model(
             title=Title,
             description=Descriptions,
             status=Status,
             due_date=Due_Date,
-            created_at=Create_date
         )
         new_task.save()
 
@@ -48,7 +48,7 @@ def update_task(request, task_id):
             description = request.POST.get('descriptions'),
             status = request.POST.get('status'),
             due_date = request.POST.get('due_date'),
-            created_at = request.POST.get('create_date')
+            created_at = now,
         )
         task.save()
         return redirect('taskList')

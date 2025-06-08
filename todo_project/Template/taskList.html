@@ -12,7 +12,7 @@ body {
   padding: 0;
 }
 
-h1 {
+h1, h3 {
   text-align: center;
   color: #4f46e5;
   margin-top: 30px;
@@ -65,7 +65,7 @@ h1 {
 }
 </style>
 <h1>All task you added</h1>
-
+<h3 style="text-align: left; margin-left: 5%; margin-bottom: 10px;"><a href="{% url 'addTask' %}" class="btn btn-primary" style="margin-top:20px;">Add a new task?</a></h3>
 <table id="customers">
   <tr>
     <th>Title</th>
@@ -80,8 +80,8 @@ h1 {
     <td>{{ data.title }}</td>
     <td>{{ data.description }}</td>
     <td>{{ data.status }}</td>
-    <td>{{ data.due_date }}</td>
-    <td>{{ data.created_at }}</td>
+    <td>{{ data.due_date|date:"d, F, Y" }}</td>
+    <td>{{ data.created_at|date:"d, F, Y h:i A" }}</td>
     <td>
         <a href="{% url 'updateTask' data.id %}">Update</a> |
         <a href="{% url 'deleteTask' data.id %}">Delete</a>

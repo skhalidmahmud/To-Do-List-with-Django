@@ -113,10 +113,6 @@ button[type="submit"]:hover {
         <label for="id_due_date">Due Date:</label>
         <input type="date" id="id_due_date" value="{{ task.due_date|date:'Y-m-d' }}" name="due_date" required>
     </div>
-    <div>
-        <label for="id_create_date">Create Date:</label>
-        <input type="date" id="id_create_date" value="{{ task.created_at|date:'Y-m-d' }}" name="create_date" required>
-    </div>
     <button type="submit" value="update">Edit this Task</button>
 </form>
 
